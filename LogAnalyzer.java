@@ -80,4 +80,28 @@ public class LogAnalyzer
          }
          return total;
      }
+     
+     /**
+      * Método que devuelve en qué hora el servidor tuvo que responder a más peticiones. 
+      * Si hay empate devuelve la última de las horas. Si no ha habido accesos informa del hecho por pantalla y devuelve -1.
+      */
+     public int busiestHour()
+     {
+         int hora = -1;
+         int numeroDeVisitasPorHora = 0;
+         int hour = 0;
+         while(hour < hourCounts.length) {
+             if(numeroDeVisitasPorHora <= hourCounts[hour] && hourCounts[hour] != 0)
+             {
+                 hora = hour;
+                 numeroDeVisitasPorHora = hourCounts[hour];
+             }
+             hour++;
+         }
+         if (hora == -1)
+         {
+             System.out.println("El servidor no a tenido accesos");
+         }
+         return hora;
+     }
 }
